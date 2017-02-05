@@ -3,8 +3,8 @@
 # Copyright (c) 2013-2016 Tuomo Tanskanen <tuomo@tanskanen.org>
 
 # read configurable cpu/memory/port/swap/flavor settings from environment variables
-memory = ENV['GITLAB_MEMORY'] || 2048
-cpus = ENV['GITLAB_CPUS'] || 1
+memory = ENV['GITLAB_MEMORY'] || 8048
+cpus = ENV['GITLAB_CPUS'] || 2
 port = ENV['GITLAB_PORT'] || 8443
 swap = ENV['GITLAB_SWAP'] || 0
 host = ENV['GITLAB_HOST'] || "gitlab.local"
@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :gitlab do |config|
     # Configure some hostname here
+    config.vm.network "public_network"
     config.vm.hostname = host
     config.vm.box = "ubuntu/xenial64"
     config.vm.provision :shell, :path => "install-gitlab.sh",
@@ -25,6 +26,7 @@ Vagrant.configure("2") do |config|
     # or access the site via hostname:<port>, in this case 127.0.0.1:8080
     # By default, Gitlab is at https + port 8443
     config.vm.network :forwarded_port, guest: 443, host: port
+    config.vm.network :forwarded_port, guest: 80, host: 8080
   end
 
   # GitLab recommended specs

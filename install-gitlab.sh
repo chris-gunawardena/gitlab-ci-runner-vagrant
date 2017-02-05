@@ -73,7 +73,7 @@ install_swap_file()
 
 rewrite_hostname()
 {
-    sed -i -e "s,^external_url.*,external_url 'https://${GITLAB_HOSTNAME}/'," /etc/gitlab/gitlab.rb
+    sed -i -e "s,^external_url.*,external_url 'http://${GITLAB_HOSTNAME}/'," /etc/gitlab/gitlab.rb
 }
 
 
@@ -115,5 +115,5 @@ gitlab-ctl reconfigure
 
 # done
 echo "Done!"
-echo " Login at https://${GITLAB_HOSTNAME}:${GITLAB_PORT}/, username 'root'. Password will be reset on first login."
+echo " Login at http://${GITLAB_HOSTNAME}:${GITLAB_PORT}/, username 'root'. Password will be reset on first login."
 echo " Config found at /etc/gitlab/gitlab.rb and updated by 'sudo gitlab-ctl reconfigure'"
