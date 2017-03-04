@@ -1,4 +1,4 @@
 /.vagrant
-/gitlab.rb
+# /gitlab.rb
 /*.log
 
