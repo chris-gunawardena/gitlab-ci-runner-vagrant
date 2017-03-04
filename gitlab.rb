@@ -3,7 +3,7 @@
 # external_url 'http://gitlab.local/'
 
 # if https
-external_url 'http://gitlab.local/'
+external_url 'http://192.168.0.12/' # this should be the ip addess of gitlab server that can be accesssed from docker
 nginx['redirect_http_to_https'] = false
 nginx['ssl_certificate'] = "/etc/ssl/certs/ssl-cert-snakeoil.pem"
 nginx['ssl_certificate_key'] = "/etc/ssl/private/ssl-cert-snakeoil.key"
